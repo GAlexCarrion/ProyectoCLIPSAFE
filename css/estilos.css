@@ -57,9 +57,16 @@ html {
     color: #555;
 }
 
+/* --- ESTILOS ACTUALIZADOS PARA LA SECCIÓN HERO (CARRUSEL) --- */
+.carousel-item {
+    height: 500px; /* Altura fija para el carrusel item */
+    background-color: #343a40; /* Fondo oscuro por si la imagen no carga */
+}
+
 .carousel-item img {
-    object-fit: cover;
-    filter: brightness(0.5);
+    height: 100%; /* La imagen ocupa el 100% de la altura del carousel-item */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    filter: brightness(0.5); /* Oscurece la imagen para que el texto se lea mejor */
 }
 
 .carousel-caption {
@@ -81,6 +88,22 @@ html {
 .carousel-caption .btn {
     padding: 10px 20px;
     font-size: 1.2rem;
+}
+
+/* Media query para hacer el carrusel más pequeño en móviles */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px; /* Altura menor en pantallas pequeñas */
+    }
+    .carousel-caption {
+        bottom: 50px;
+    }
+    .carousel-caption h5 {
+        font-size: 1.8rem;
+    }
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
 }
 
 .about-text {
@@ -146,6 +169,18 @@ footer {
 }
 
 #scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    display: none; /* Controlado por JS */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
     background-color: #007bff;
     border-color: #007bff;
 }

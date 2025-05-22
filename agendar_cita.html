@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita - CLIPSAFE</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 70px;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .form-container h2 {
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .alert-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">CLIPSAFE</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarCLIPSAFE"
+                    aria-controls="navbarCLIPSAFE"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCLIPSAFE">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="index.html#inicio" class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#nosotros" class="nav-link">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#servicios" class="nav-link">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#barberos" class="nav-link">Nuestros Barberos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#contacto" class="nav-link">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.html" class="nav-link">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="registro.html" class="nav-link">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agendar_cita.html" class="nav-link active">Agendar Cita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mis_citas.html" class="nav-link">Mis Citas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="form-container">
+                    <h2>Agendar Nueva Cita</h2>
+                    <form id="appointmentForm">
+                        <div class="mb-3">
+                            <label for="serviceSelect" class="form-label">Servicio:</label>
+                            <select class="form-select" id="serviceSelect" required>
+                                <option value="">Selecciona un servicio</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="barberSelect" class="form-label">Barbero:</label>
+                            <select class="form-select" id="barberSelect" required>
+                                <option value="">Selecciona un barbero</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentDate" class="form-label">Fecha:</label>
+                            <input type="date" class="form-control" id="appointmentDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentTime" class="form-label">Hora:</label>
+                            <select class="form-select" id="appointmentTime" required>
+                                <option value="">Selecciona una hora</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="notes" class="form-label">Notas (Opcional):</label>
+                            <textarea class="form-control" id="notes" rows="3" placeholder="Ej: 'Quiero un corte clásico y un perfilado de barba.'"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirmar Cita</button>
+                        <div id="message" class="alert-message" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="text-white mb-0">&copy; 2025 CLIPSAFE. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script type="module" src="js/firebase_init.js"></script>
+
+    <script type="module">
+        import { db, auth, currentUserId, isAuthReady, collection, addDoc, appId } from './js/firebase_init.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"; 
+
+        const serviceSelect = document.getElementById('serviceSelect');
+        const barberSelect = document.getElementById('barberSelect');
+        const appointmentDateInput = document.getElementById('appointmentDate');
+        const appointmentTimeSelect = document.getElementById('appointmentTime');
+        const notesInput = document.getElementById('notes');
+        const appointmentForm = document.getElementById('appointmentForm');
+        const messageDiv = document.getElementById('message');
+
+        const mockServices = [
+            { id: 'corte', name: 'Corte de Cabello', duration: 30, price: 10 },
+            { id: 'barba', name: 'Arreglo de Barba', duration: 20, price: 8 },
+            { id: 'afeitado', name: 'Afeitado Clásico', duration: 45, price: 15 }
+        ];
+
+        const mockBarbers = [
+            { id: 'barbero1', name: 'Barbero Juan' },
+            { id: 'barbero2', name: 'Barbero Pedro' },
+            { id: 'barbero3', name: 'Barbero María' }
+        ];
+
+        const availableTimes = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'
+        ];
+
+        function showMessage(msg, type) {
+            messageDiv.textContent = msg;
+            messageDiv.className = `alert-message alert-${type}`;
+            messageDiv.style.display = 'block';
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function loadOptions() {
+            serviceSelect.innerHTML = '<option value="">Selecciona un servicio</option>';
+            barberSelect.innerHTML = '<option value="">Selecciona un barbero</option>';
+            appointmentTimeSelect.innerHTML = '<option value="">Selecciona una hora</option>';
+
+            mockServices.forEach(service => {
+                const option = document.createElement('option');
+                option.value = service.id;
+                option.textContent = service.name;
+                serviceSelect.appendChild(option);
+            });
+
+            mockBarbers.forEach(barber => {
+                const option = document.createElement('option');
+                option.value = barber.id;
+                option.textContent = barber.name;
+                barberSelect.appendChild(option);
+            });
+
+            availableTimes.forEach(time => {
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                appointmentTimeSelect.appendChild(option);
+            });
+
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            appointmentDateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+
+        appointmentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!isAuthReady) {
+                showMessage("Inicializando autenticación, por favor espera...", "danger");
+                return;
+            }
+
+            if (!currentUserId) {
+                showMessage("Necesitas iniciar sesión para agendar una cita. Redirigiendo...", "danger");
+                return;
+            }
+
+            const selectedServiceId = serviceSelect.value;
+            const selectedService = mockServices.find(s => s.id === selectedServiceId);
+            const selectedBarberId = barberSelect.value;
+            const selectedBarber = mockBarbers.find(b => b.id === selectedBarberId);
+            const appointmentDate = appointmentDateInput.value;
+            const appointmentTime = appointmentTimeSelect.value;
+            const notes = notesInput.value.trim();
+
+            if (!selectedService || !selectedBarber || !appointmentDate || !appointmentTime) {
+                showMessage("Por favor, completa todos los campos requeridos.", "danger");
+                return;
+            }
+
+            const newAppointment = {
+                clientId: currentUserId,
+                clientEmail: auth.currentUser ? auth.currentUser.email || 'Usuario Anónimo' : 'Usuario Anónimo',
+                serviceId: selectedService.id,
+                serviceName: selectedService.name,
+                barberId: selectedBarber.id,
+                barberName: selectedBarber.name,
+                date: appointmentDate,
+                time: appointmentTime,
+                notes: notes,
+                status: 'Pendiente',
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                const appointmentsCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/appointments`);
+                
+                await addDoc(appointmentsCollectionRef, newAppointment);
+                showMessage("¡Cita agendada con éxito!", "success");
+                appointmentForm.reset();
+            } catch (e) {
+                console.error("Error al agendar la cita: ", e);
+                showMessage("Error al agendar la cita. Inténtalo de nuevo. Revisa la consola para más detalles.", "danger");
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOptions();
+        });
+    </script>
+</body>
+</html>
